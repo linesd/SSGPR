@@ -4,16 +4,19 @@ import numpy as np
 from model.ssgpr import SSGPR
 from optimizer.check_grad import check_grad
 
-def test_gradients_1D():
+def test_gradients_2D():
 
     np.random.seed(1) # set seed
     epsilon = 1e-5    # perturbation size
-    precision = 7     # decimal places
+    precision = 6     # decimal places
 
     # load the data
-    data = np.load("../data/test_data/data_test_1D.npy")
-    X = data[:,0].reshape(-1,1)
-    Y = data[:,0].reshape(-1,1)
+    data = np.load("../data/test_data/test_data_2D.npy")
+    X = data[:,0:2]
+    Y = data[:,2].reshape(-1,1)
+    Y_mean = Y.mean()
+    # Y = Y - Y_mean
+    N, D = X.shape
 
     # create ssgpr instance
     nbf = 10
@@ -21,10 +24,10 @@ def test_gradients_1D():
     ssgpr.add_data(X, Y)
 
     # initialise hyper-parameters from data
-    lengthscales = np.log((np.max(X) - np.min(X)).T / 2)
-    amplitude = np.log(np.var(Y))
-    noisevar = np.log(np.var(Y) / 4)
-    spectral_sample = np.random.normal(0,1,size=(nbf))
+    lengthscales = np.log((np.max(X, 0) - np.min(X, 0)).T / 2)
+    amplitude = 0.5*np.log(np.var(Y))
+    noisevar = 0.5*np.log(np.var(Y) / 4)
+    spectral_sample = np.random.normal(0,1,size=(D*nbf))#np.loadtxt('../data/test_data/spectral_points.csv')
     params = np.hstack((lengthscales, amplitude, noisevar, spectral_sample)).reshape(-1,1)
 
     _, dy, dh = check_grad(ssgpr.objective_function, params, epsilon)

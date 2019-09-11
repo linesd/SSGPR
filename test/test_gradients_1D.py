@@ -5,15 +5,14 @@ from model.ssgpr import SSGPR
 from optimizer.check_grad import check_grad
 
 def test_gradients_1D():
-
     np.random.seed(1) # set seed
     epsilon = 1e-5    # perturbation size
-    precision = 7     # decimal places
+    precision = 6     # decimal places
 
     # load the data
-    data = np.load("../data/test_data/data_test_1D.npy")
+    data = np.load("../data/test_data/test_data_1D.npy")
     X = data[:,0].reshape(-1,1)
-    Y = data[:,0].reshape(-1,1)
+    Y = data[:,1].reshape(-1,1)
 
     # create ssgpr instance
     nbf = 10

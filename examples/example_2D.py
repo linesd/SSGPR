@@ -8,8 +8,7 @@ np.random.seed(0)  # set seed
 
 # load the data
 data = np.load("../data/example_data/data_2D.npy")
-N = data.shape[0]
-n = floor(N*0.8)
+n = floor(0.8*data.shape[0])
 X_train = data[:n,0:2]
 X_test = data[n:,0:2]
 Y_train = data[:n,2].reshape(-1,1)

@@ -24,9 +24,9 @@ def test_gradients_2D():
     # initialise hyper-parameters from data
     lengthscales = np.log((np.max(X, 0) - np.min(X, 0)).T / 2)
     amplitude = 0.5*np.log(np.var(Y))
-    noisevar = 0.5*np.log(np.var(Y) / 4)
+    noise_var = 0.5*np.log(np.var(Y) / 4)
     spectral_sample = np.random.normal(0,1,size=(D*nbf))
-    params = np.hstack((lengthscales, amplitude, noisevar, spectral_sample)).reshape(-1,1)
+    params = np.hstack((lengthscales, amplitude, noise_var, spectral_sample)).reshape(-1,1)
 
     _, dy, dh = check_grad(ssgpr.objective_function, params, epsilon)
 

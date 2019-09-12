@@ -273,6 +273,7 @@ class SSGPR:
 
         # initialise hyper-parameters from data
         lengthscales = np.log((np.max(self.X, 0) - np.min(self.X, 0)).T / 2)
+        lengthscales[lengthscales < -1e2] = -1e2
         amplitude = 0.5*np.log(np.var(self.Y))
         noise_variance = 0.5*np.log(np.var(self.Y) / 4)
 
@@ -287,6 +288,8 @@ class SSGPR:
                 if nmllc < nmll:
                     spectral_points = spectral_sample
                     nmll = nmllc
+                    if verbose:
+                        print("Selecting new spectral points ...")
 
             # spectral_points = np.loadtxt("../data/test_data/spectral_points.csv")
             # minimize

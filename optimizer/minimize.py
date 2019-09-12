@@ -77,7 +77,7 @@ def minimize(f, X, length, args=(), reduction=None, verbose=True):
 	S = 'Linesearch' if length > 0 else 'Function evaluation'
 
 	i = 0 								# run length counter
-	is_failed = 0						# no previous line search has failed
+	ls_failed = 0						# no previous line search has failed
 	f0, df0 = eval('f')(X, *list(args))			# get initial function value and gradient
 	df0 = df0.reshape(-1, 1)
 	fX=[]; fX.append(f0)

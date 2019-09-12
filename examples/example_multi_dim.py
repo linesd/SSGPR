@@ -2,7 +2,6 @@ import sys
 sys.path.append("..")
 import numpy as np
 from model.ssgpr import SSGPR
-from math import floor
 np.random.seed(1)  # set seed
 
 import urllib.request
@@ -22,8 +21,7 @@ X = data[:num_points, :-1]
 X = X - X.min()
 X = 2 * (X / X.max()) - 1
 Y = data[:, -1].reshape(-1,1)
-# N, D = X.shape
-# n = floor(0.8*N)
+
 X_train = X[:num_points,:dimensions]
 X_test = X[num_points:,:dimensions]
 Y_train = Y[:num_points,:]

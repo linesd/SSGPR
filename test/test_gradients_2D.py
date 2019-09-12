@@ -14,8 +14,6 @@ def test_gradients_2D():
     data = np.load("../data/test_data/test_data_2D.npy")
     X = data[:,0:2]
     Y = data[:,2].reshape(-1,1)
-    Y_mean = Y.mean()
-    # Y = Y - Y_mean
     N, D = X.shape
 
     # create ssgpr instance
@@ -27,7 +25,7 @@ def test_gradients_2D():
     lengthscales = np.log((np.max(X, 0) - np.min(X, 0)).T / 2)
     amplitude = 0.5*np.log(np.var(Y))
     noisevar = 0.5*np.log(np.var(Y) / 4)
-    spectral_sample = np.random.normal(0,1,size=(D*nbf))#np.loadtxt('../data/test_data/spectral_points.csv')
+    spectral_sample = np.random.normal(0,1,size=(D*nbf))
     params = np.hstack((lengthscales, amplitude, noisevar, spectral_sample)).reshape(-1,1)
 
     _, dy, dh = check_grad(ssgpr.objective_function, params, epsilon)

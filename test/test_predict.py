@@ -15,8 +15,8 @@ def test_predict():
     n = floor(N*0.8)
     X_train = data[:n,0:2]
     X_test = data[n:,0:2]
-    Y_train = data[:n,2]
-    Y_test = data[n:,2]
+    Y_train = data[:n,2].reshape(-1,1)
+    Y_test = data[n:,2].reshape(-1,1)
 
     # create ssgpr instance
     nbf = 100  # number of basis functions

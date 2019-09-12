@@ -4,7 +4,7 @@ import numpy as np
 from model.ssgpr import SSGPR
 from utils.plots import plot_predictive_2D
 from math import floor
-np.random.seed(1)  # set seed
+np.random.seed(0)  # set seed
 
 # load the data
 data = np.load("../data/example_data/data_2D.npy")
@@ -12,8 +12,8 @@ N = data.shape[0]
 n = floor(N*0.8)
 X_train = data[:n,0:2]
 X_test = data[n:,0:2]
-Y_train = data[:n,2]
-Y_test = data[n:,2]
+Y_train = data[:n,2].reshape(-1,1)
+Y_test = data[n:,2].reshape(-1,1)
 
 # create ssgpr instance
 nbf = 100  # number of basis functions

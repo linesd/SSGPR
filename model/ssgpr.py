@@ -288,6 +288,7 @@ class SSGPR:
                     spectral_points = spectral_sample
                     nmll = nmllc
 
+            # spectral_points = np.loadtxt("../data/test_data/spectral_points.csv")
             # minimize
             X0 = np.hstack((lengthscales, amplitude, noise_variance, spectral_points)).reshape(-1,1)
             Xs, convergence, _ = minimize(self.objective_function, X0, length=maxiter, verbose=verbose)

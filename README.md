@@ -72,7 +72,7 @@ restarts : int
     The number of restarts for the minimization process. Defaults to 3.
     - The first minimization attempt is initialized with:
         - lengthscales: 	half of the ranges of the input dimensions
-        - amplitude: variance of the targets
+        - amplitude: 		variance of the targets
         - noise variance: 	variance of the targets divided by four
         - spectral points: 	choose the best from 100 random initializations
     - Subsequent restarts have random initialization.

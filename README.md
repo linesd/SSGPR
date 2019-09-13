@@ -131,7 +131,11 @@ f_post : numpy array of shape (N, num_samples)
     (weights). f_post is only returned if sample_posterior = True.
 ```
 
-- **Evaluate:** evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised Mean Squared Error (MNSE) and the Mean Negative Log Probability (MNLP) of the predictive mean against the test data.
+- **Evaluate:** evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised Mean Squared Error (MNSE) and the Mean Negative Log Probability (MNLP) of the predictive mean against the test data. MNSE and MNLP are calculated with:
+
+![plot_predicitive_1D](doc/imgs/performance_metrics.png)
+
+See [Sparse Spectrum Gaussian Process Regression](http://www.jmlr.org/papers/volume11/lazaro-gredilla10a/lazaro-gredilla10a.pdf) at the bottom of page 1874 for a description of the symbols.
 
 `NMSE, MNLP = ssgpr.evaluate_performance(restarts=3)`
 

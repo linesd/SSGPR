@@ -17,9 +17,6 @@ Table of Contents:
 `ssgpr = SSGPR(num_basis_functions=nbf, optimize_freq=True)`
 
 ```
-SSGPR
------
-
 Sparse Spectrum Gaussian Process Regression (SSGPR) object.
 
 Parameters
@@ -54,7 +51,41 @@ Y_test : numpy array of shape (N, 1) - default is None
     Test data inputs where N is the number of data test points.
 
 ```
+- Optimize the SSGPR negative marginal log likelihood with conjugate gradients minimization:
 
+`ssgpr.optimize(restarts=3, maxiter=1000, verbose=True)`
+
+```
+Optimize the marginal log likelihood with conjugate gradients minimization.
+
+Parameters:
+restarts : int
+    The number of restarts for the minimization process. Defaults to 3.
+    - The first minimization attempt is initialized with:
+        - lengthscales: half of the ranges of the input dimensions
+        - amplitude: variance of the targets
+        - noise variance: variance of the targets divided by four
+        - spectral points: choose the best from 100 random initializations
+    - Subsequent restarts have random initialization.
+
+maxiter : int
+    The maximum number of line searches for the minimization process.
+    Defaults to 1000.
+
+verbose : bool
+    If True, prints minimize progress.
+
+Return
+------
+Xs : numpy array - Shape : (D + 2 + num_basis_functions, 1)
+    The found solution.
+
+best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
+    Convergence information. The first column is the negative marginal log
+    likelihood returned by the function being minimized. The next D + 2 + num_basis_functions
+    columns are the guesses during the minimization process. i is the number of
+    linesearches performed.
+```
 
 ## Examples
 ### 1-Dimensional Data

@@ -242,7 +242,7 @@ class SSGPR:
 
         Parameters:
         restarts : int
-            The number of restarts for the minimization process.
+            The number of restarts for the minimization process. Defaults to 3.
             - The first minimization attempt is initialized with:
                 - lengthscales: half of the ranges of the input dimensions
                 - amplitude: variance of the targets
@@ -252,6 +252,7 @@ class SSGPR:
 
         maxiter : int
             The maximum number of line searches for the minimization process.
+            Defaults to 1000.
 
         verbose : bool
             If True, prints minimize progress.

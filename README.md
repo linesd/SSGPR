@@ -12,12 +12,9 @@ Table of Contents:
 
 ## General Use
 
-- Create an instance of the SSGPR object with: 
+- Create an instance of the SSGPR object with: `ssgpr = SSGPR(num_basis_functions=nbf, optimize_freq=True)`
 
 ```
-ssgpr = SSGPR(num_basis_functions=nbf, optimize_freq=True)
-
-
 SSGPR
 -----
 
@@ -31,11 +28,9 @@ num_basis_functions : int
 optimize_freq : bool
     If true, the spectral points are optimized.
 ```
-- Add data to SSGPR with the add_data method:
+- Add data to SSGPR with the add_data method: `ssgpr.add_data(X_train, Y_train, X_test, Y_test)`
 
 ```
-ssgpr.add_data(X_train, Y_train, X_test, Y_test)
-
 Add data to the SSGPR object.
 
 Parameters

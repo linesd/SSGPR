@@ -2,15 +2,15 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/YannDubs/disentangling-vae/blob/master/LICENSE) [![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
-This repository contains python code (training / predicting / evaluating / plotting) for [Sparse Spectrum Gaussian Process Regression](http://jmlr.csail.mit.edu/papers/v11/lazaro-gredilla10a.html).
+This repository contains python code (training / predicting / evaluating / plotting) for [Sparse Spectrum Gaussian Process Regression](http://jmlr.csail.mit.edu/papers/v11/lazaro-gredilla10a.html). This implementation is the weight space view presented in section 3 of the [paper](http://www.jmlr.org/papers/volume11/lazaro-gredilla10a/lazaro-gredilla10a.pdf): Trigonometric Bayesian Regression. It is a Bayesian linear regression model with a fixed number of trigonometric basis functions.
 
 Notes:
 - Tested for python >= 3.6
 
 Table of Contents:
 1. [Install](#install)
-2. [General Use](#general-use)
-3. [Examples](#examples)
+2. [Examples](#examples)
+3. [General Use](#general-use)
 4. [Testing](#testing)
 
 ## Install
@@ -19,6 +19,14 @@ Table of Contents:
 # clone repo
 pip install -r requirements.txt
 ```
+
+## Examples
+
+Python scripts for the following examples can be found in the **examples** directory:
+
+- SSGPR for 1-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results. Filename **example_1D.py**
+- SSGPR for 2-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results. Filename **example_2D.py**
+- SSGPR for high-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation. Filename **example_high_dim.py**
 
 ## General Use
 
@@ -262,14 +270,6 @@ post_sample : numpy array of shape (n, num_samples)
 ```
 
 ![plot_predicitive_2D](doc/imgs/example_2D.png)
-
-## Examples
-
-Python scripts for the following examples can be found in the **examples** directory:
-
-- SSGPR for 1-dimensional data: predicting on new inputs / performance evaluation / plotting results. Filename example_1D.py
-- SSGPR for 2-dimensional data: predicting on new inputs / performance evaluation / plotting results. Filename example_2D.py
-- SSGPR for high-dimensional data: predicting on new inputs / performance evaluation. Filename example_high_dim.py
 
 ## Testing
 

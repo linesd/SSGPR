@@ -151,6 +151,8 @@ Evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised
 
 See [Sparse Spectrum Gaussian Process Regression](http://www.jmlr.org/papers/volume11/lazaro-gredilla10a/lazaro-gredilla10a.pdf) at the bottom of page 1874 for a description of the symbols.
 
+Evaluate performance is called with the `evaluate_performance` method:
+
 `NMSE, MNLP = ssgpr.evaluate_performance(restarts=3)`
 
 ```

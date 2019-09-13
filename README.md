@@ -8,7 +8,15 @@ Notes:
 - Tested for python >= 3.6
 
 Table of Contents:
-1. [General Use](#General Use)
+1. [Install](#install)
+2. [General Use](#general-use)
+
+## Install
+
+```
+# clone repo
+pip install -r requirements.txt
+```
 
 ## General Use
 
@@ -53,12 +61,13 @@ Y_test : numpy array of shape (N, 1) - default is None
 ```
 - Optimize the SSGPR negative marginal log likelihood with conjugate gradients minimization:
 
-`ssgpr.optimize(restarts=3, maxiter=1000, verbose=True)`
+`Xs, best_convergence = ssgpr.optimize(restarts=3, maxiter=1000, verbose=True)`
 
 ```
 Optimize the marginal log likelihood with conjugate gradients minimization.
 
-Parameters:
+Parameters
+----------
 restarts : int
     The number of restarts for the minimization process. Defaults to 3.
     - The first minimization attempt is initialized with:
@@ -69,8 +78,7 @@ restarts : int
     - Subsequent restarts have random initialization.
 
 maxiter : int
-    The maximum number of line searches for the minimization process.
-    Defaults to 1000.
+    The maximum number of line searches for the minimization process. Defaults to 1000.
 
 verbose : bool
     If True, prints minimize progress.
@@ -81,10 +89,42 @@ Xs : numpy array - Shape : (D + 2 + num_basis_functions, 1)
     The found solution.
 
 best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
-    Convergence information. The first column is the negative marginal log
+    Convergence information from the best restart. The first column is the negative marginal log
     likelihood returned by the function being minimized. The next D + 2 + num_basis_functions
     columns are the guesses during the minimization process. i is the number of
     linesearches performed.
+```
+
+- Make predictions on new data with the predict method. Predict returns the predictive mean and standard deviation. Predict also has the option to return num_samples samples drawn from the posterior distribution over the model parameters.
+
+`mu, stddev, f_post = ssgpr.predict(Xs, sample_posterior=False, num_samples=1)`
+
+```
+Predict on new inputs with the posterior predictive.
+
+Parameters
+----------
+Xs : numpy array of shape (N, D)
+    New data inputs where N is the number of new data points and D is the dimensionality of the data.
+
+sample_posterior : bool
+    If true, predict returns num_samples samples drawn from the posterior distribution over the model parameters (weights). Default is False.
+
+
+num_samples : int
+    Number of samples to draw from the posterior distribution over the model parameters (weights).
+
+Return
+------
+mu : numpy array of shape (N, 1)
+    Predictive mean where N is the number of new data points (Xs.shape[0])
+
+stddev : numpy array of shape (N, 1)
+    Predictive standard deviation where N is the number of new data points.
+
+f_post : numpy array of shape (N, num_samples)
+    num_samples samples from the posterior distribution over the model parameters
+    (weights). f_post is only returned if sample_posterior = True.
 ```
 
 ## Examples

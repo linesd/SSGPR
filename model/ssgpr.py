@@ -82,7 +82,7 @@ class SSGPR:
 
         sample_posterior : bool
             If true, predict returns num_samples drawn from the posterior distribution
-            over the model parameters (weights).
+            over the model parameters (weights). Default is False.
 
         num_samples : int
             Number of samples to draw from the posterior distribution over the model
@@ -240,7 +240,8 @@ class SSGPR:
         """
         Optimize the marginal log likelihood with conjugate gradients minimization.
 
-        Parameters:
+        Parameters
+        ----------
         restarts : int
             The number of restarts for the minimization process. Defaults to 3.
             - The first minimization attempt is initialized with:
@@ -263,7 +264,7 @@ class SSGPR:
 		    The found solution.
 
 	    best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
-            Convergence information. The first column is the negative marginal log
+            Convergence information from the best restart. The first column is the negative marginal log
             likelihood returned by the function being minimized. The next D + 2 + num_basis_functions
             columns are the guesses during the minimization process. i is the number of
             linesearches performed.

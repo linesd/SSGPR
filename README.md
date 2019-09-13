@@ -20,6 +20,8 @@ pip install -r requirements.txt
 
 ## General Use
 
+### Create SSGPR object
+
 - **Create object:** create an instance of the SSGPR object with: 
 
 `ssgpr = SSGPR(num_basis_functions=nbf, optimize_freq=True)`
@@ -35,6 +37,9 @@ num_basis_functions : int
 optimize_freq : bool
     If true, the spectral points are optimized.
 ```
+
+### Add data
+
 - **Add data:** add data to SSGPR with the add_data method: 
 
 `ssgpr.add_data(X_train, Y_train, X_test, Y_test)`
@@ -59,6 +64,9 @@ Y_test : numpy array of shape (N, 1) - default is None
     Test data inputs where N is the number of data test points.
 
 ```
+
+## Optimize marginal log likelihood
+
 - **Optimize:** optimize the SSGPR negative marginal log likelihood with conjugate gradients minimization:
 
 `Xs, best_convergence = ssgpr.optimize(restarts=3, maxiter=1000, verbose=True)`

@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ## General Use
 
-- Create an instance of the SSGPR object with: 
+- **Create object:** create an instance of the SSGPR object with: 
 
 `ssgpr = SSGPR(num_basis_functions=nbf, optimize_freq=True)`
 
@@ -35,7 +35,7 @@ num_basis_functions : int
 optimize_freq : bool
     If true, the spectral points are optimized.
 ```
-- Add data to SSGPR with the add_data method: 
+- **Add data:** add data to SSGPR with the add_data method: 
 
 `ssgpr.add_data(X_train, Y_train, X_test, Y_test)`
 
@@ -59,7 +59,7 @@ Y_test : numpy array of shape (N, 1) - default is None
     Test data inputs where N is the number of data test points.
 
 ```
-- Optimize the SSGPR negative marginal log likelihood with conjugate gradients minimization:
+- **Optimize:** optimize the SSGPR negative marginal log likelihood with conjugate gradients minimization:
 
 `Xs, best_convergence = ssgpr.optimize(restarts=3, maxiter=1000, verbose=True)`
 
@@ -95,7 +95,7 @@ best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
     linesearches performed.
 ```
 
-- Make predictions on new data with the predict method. Predict returns the predictive mean and standard deviation. Predict also has the option to return `num_samples` samples drawn from the posterior distribution over the model parameters.
+- **Predict:** make predictions on new data with the predict method. Predict returns the predictive mean and standard deviation. Predict also has the option to return `num_samples` samples drawn from the posterior distribution over the model parameters.
 
 `mu, stddev, f_post = ssgpr.predict(Xs, sample_posterior=False, num_samples=1)`
 
@@ -131,7 +131,7 @@ f_post : numpy array of shape (N, num_samples)
     (weights). f_post is only returned if sample_posterior = True.
 ```
 
-- Evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised Mean Squared Error (MNSE) and the Mean Negative Log Probability (MNLP) of the predictive mean against the test data.
+- **Evaluate:** evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised Mean Squared Error (MNSE) and the Mean Negative Log Probability (MNLP) of the predictive mean against the test data.
 
 `NMSE, MNLP = ssgpr.evaluate_performance(restarts=3)`
 
@@ -165,13 +165,43 @@ MNLP : numpy.float64
     Mean negative log probability (MNLP)
 ``` 
 
+- **Plot:** plot the predictive distribution for 1-dimensional and 2-dimentional data.
+
+-- 1-dimensional 
+
+`plot_predictive_1D(path=None, X_train=None, Y_train=None, Xs=None, mu=None, stddev=None, post_sample=None)`
+
+```
+Plot the predictive distribution for one dimensional data.
+
+See example_1D.py for use.
+
+Parameters
+----------
+path : str
+    Path to save figure. If no path is provided then the figure is not saved.
+    
+X_train : numpy array of shape (N, 1)
+    Training data.
+    
+Y_train : numpy array of shape (N, 1)
+    Training targets.
+    
+Xs : numpy array of shape (n, 1)
+    New points used to predict on.
+    
+mu : numpy array of shape (n, 1)
+    Predictive mean generated from new points Xs.
+    
+stddev : numpy array of shape (n, 1)
+    Standard deviation generated from the new points Xs.
+    
+post_sample : numpy array of shape (n, num_samples)
+    Samples from the posterior distribution over the model parameters.
+```
+
 ## Examples
-### 1-Dimensional Data
 
-### 2-Dimensional Data
-
-### High-Dimensioal Data
-
-### Evaluating SSGPR Performance
+Python scripts for the following examples
 
 ## Testing

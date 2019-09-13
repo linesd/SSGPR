@@ -10,7 +10,23 @@ Notes:
 Table of Contents:
 1. [Usage](#usage)
 
-## Usage
+## General Use
+
+- Create an instance of the SSGPR object with: 
+
+`ssgpr = SSGPR(num_basis_functions=100, optimize_freq=True)`
+
+```
+Parameters
+----------
+num_basis_functions : int
+    Number of trigonometric basis functions used to construct the design matrix.
+
+optimize_freq : bool
+    If true, the spectral points are optimized.
+```
+
+## Examples
 ### 1-Dimensional Data
 
 ### 2-Dimensional Data
@@ -19,4 +35,4 @@ Table of Contents:
 
 ### Evaluating SSGPR Performance
 
-
+## Testing

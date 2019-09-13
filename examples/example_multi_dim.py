@@ -17,7 +17,7 @@ if not os.path.isfile('../data/example_data/elevators.mat'):
 data = np.array(loadmat('../data/example_data/elevators.mat')['data'])
 num_points = 8752
 dimensions = 14
-X = data[:num_points, :-1]
+X = data[:, :-1]
 X = X - X.min()
 X = 2 * (X / X.max()) - 1
 Y = data[:, -1].reshape(-1,1)
@@ -31,8 +31,12 @@ Y_test = Y[num_points:,:]
 nbf = 100  # number of basis functions
 ssgpr = SSGPR(num_basis_functions=nbf)
 ssgpr.add_data(X_train, Y_train, X_test, Y_test)
-ssgpr.optimize(restarts=1, maxiter=10000, verbose=True)
+ssgpr.optimize(restarts=1, maxiter=15000, verbose=True)
 
+# predict on the test points
+mu, sigma = ssgpr.predict(X_test, sample_posterior=False)
+
+# evaluate the performance
 NMSE, MNLP = ssgpr.evaluate_performance()
 print("Normalised mean squared error (NMSE): ", np.round(NMSE,5))
 print("Mean negative log probability (MNLP): ", np.round(MNLP,5))

@@ -10,6 +10,8 @@ Notes:
 Table of Contents:
 1. [Install](#install)
 2. [General Use](#general-use)
+3. [Examples](#examples)
+4. [Testing](#testing)
 
 ## Install
 
@@ -22,7 +24,7 @@ pip install -r requirements.txt
 
 ### Create SSGPR object
 
-- **Create object:** create an instance of the SSGPR object with: 
+Create an instance of the SSGPR object with: 
 
 `ssgpr = SSGPR(num_basis_functions=nbf, optimize_freq=True)`
 
@@ -40,7 +42,7 @@ optimize_freq : bool
 
 ### Add data
 
-- **Add data:** add data to SSGPR with the add_data method: 
+Add data to SSGPR with the add_data method: 
 
 `ssgpr.add_data(X_train, Y_train, X_test, Y_test)`
 
@@ -65,9 +67,9 @@ Y_test : numpy array of shape (N, 1) - default is None
 
 ```
 
-## Optimize marginal log likelihood
+### Optimize marginal log likelihood
 
-- **Optimize:** optimize the SSGPR negative marginal log likelihood with conjugate gradients minimization:
+Optimize the SSGPR negative marginal log likelihood with conjugate gradients minimization:
 
 `Xs, best_convergence = ssgpr.optimize(restarts=3, maxiter=1000, verbose=True)`
 
@@ -103,7 +105,9 @@ best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
     linesearches performed.
 ```
 
-- **Predict:** make predictions on new data with the predict method. Predict returns the predictive mean and standard deviation. Predict also has the option to return `num_samples` samples drawn from the posterior distribution over the model parameters.
+### Make predictions
+
+Make predictions on new data with the predict method. Predict returns the predictive mean and standard deviation. Predict also has the option to return `num_samples` samples drawn from the posterior distribution over the model parameters.
 
 `mu, stddev, f_post = ssgpr.predict(Xs, sample_posterior=False, num_samples=1)`
 
@@ -139,7 +143,9 @@ f_post : numpy array of shape (N, num_samples)
     (weights). f_post is only returned if sample_posterior = True.
 ```
 
-- **Evaluate:** evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised Mean Squared Error (MNSE) and the Mean Negative Log Probability (MNLP) of the predictive mean against the test data. MNSE and MNLP are calculated with:
+### Evaluate performance
+
+Evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised Mean Squared Error (MNSE) and the Mean Negative Log Probability (MNLP) of the predictive mean against the test data. MNSE and MNLP are calculated with:
 
 ![plot_predicitive_1D](doc/imgs/performance_metrics.png)
 
@@ -177,84 +183,94 @@ MNLP : numpy.float64
     Mean negative log probability (MNLP)
 ``` 
 
-- **Plotting:** plot the predictive distribution for 1-dimensional and 2-dimentional data.
+### Plot results
 
-	- Predictive distribution for 1-dimensional input data
+Plot the predictive distribution for 1-dimensional and 2-dimentional data.
 
-	`plot_predictive_1D(path=None, X_train=None, Y_train=None, Xs=None, mu=None, stddev=None, post_sample=None)`
+- Predictive distribution for 1-dimensional input data
 
-	```
-	Plot the predictive distribution for one dimensional data.
+`plot_predictive_1D(path=None, X_train=None, Y_train=None, Xs=None, mu=None, stddev=None, post_sample=None)`
 
-	See example_1D.py for use.
+```
+Plot the predictive distribution for one dimensional data.
 
-	Parameters
-	----------
-	path : str
-	    Path to save figure. If no path is provided then the figure is not saved.
-	    
-	X_train : numpy array of shape (N, 1)
-	    Training data.
-	    
-	Y_train : numpy array of shape (N, 1)
-	    Training targets.
-	    
-	Xs : numpy array of shape (n, 1)
-	    New points used to predict on.
-	    
-	mu : numpy array of shape (n, 1)
-	    Predictive mean generated from new points Xs.
-	    
-	stddev : numpy array of shape (n, 1)
-	    Standard deviation generated from the new points Xs.
-	    
-	post_sample : numpy array of shape (n, num_samples)
-	    Samples from the posterior distribution over the model parameters.
-	```
+See example_1D.py for use.
 
-	![plot_predicitive_1D](doc/imgs/example_1D.png)
+Parameters
+----------
+path : str
+    Path to save figure. If no path is provided then the figure is not saved.
+    
+X_train : numpy array of shape (N, 1)
+    Training data.
+    
+Y_train : numpy array of shape (N, 1)
+    Training targets.
+    
+Xs : numpy array of shape (n, 1)
+    New points used to predict on.
+    
+mu : numpy array of shape (n, 1)
+    Predictive mean generated from new points Xs.
+    
+stddev : numpy array of shape (n, 1)
+    Standard deviation generated from the new points Xs.
+    
+post_sample : numpy array of shape (n, num_samples)
+    Samples from the posterior distribution over the model parameters.
+```
 
-	- Predictive distribution for 2-dimensional input data
+![plot_predicitive_1D](doc/imgs/example_1D.png)
 
-	`plot_predictive_2D(path=None, X_train=None, Y_train=None, Xs1=None, Xs2=None, mu=None, stddev=None)`
+- Predictive distribution for 2-dimensional input data
 
-	```
-	Plot the predictive distribution for one dimensional data.
+`plot_predictive_2D(path=None, X_train=None, Y_train=None, Xs1=None, Xs2=None, mu=None, stddev=None)`
 
-	See example_2D.py for use.
+```
+Plot the predictive distribution for one dimensional data.
 
-	Parameters
-	----------
-	path : str
-	    Path to save figure. If no path is provided then the figure is not saved.
+See example_2D.py for use.
 
-	X_train : numpy array of shape (N, 1)
-	    Training data.
+Parameters
+----------
+path : str
+    Path to save figure. If no path is provided then the figure is not saved.
 
-	Y_train : numpy array of shape (N, 1)
-	    Training targets.
+X_train : numpy array of shape (N, 1)
+    Training data.
 
-	Xs1 : numpy array of shape (n, n)
-	    New points used to predict on. Xs1 should be generated with np.meshgrid (see example_2D.py).
+Y_train : numpy array of shape (N, 1)
+    Training targets.
 
-	Xs2 : numpy array of shape (n, n)
-	    New points used to predict on. Xs2 should be generated with np.meshgrid (see example_2D.py).
+Xs1 : numpy array of shape (n, n)
+    New points used to predict on. Xs1 should be generated with np.meshgrid (see example_2D.py).
 
-	mu : numpy array of shape (n, n)
-	    Predictive mean generated from new points Xs1 and Xs2.
+Xs2 : numpy array of shape (n, n)
+    New points used to predict on. Xs2 should be generated with np.meshgrid (see example_2D.py).
 
-	stddev : numpy array of shape (n, n)
-	    Standard deviation generated from the new points Xs1 and Xs2.
+mu : numpy array of shape (n, n)
+    Predictive mean generated from new points Xs1 and Xs2.
 
-	post_sample : numpy array of shape (n, num_samples)
-	    Samples from the posterior distribution over the model parameters. 
+stddev : numpy array of shape (n, n)
+    Standard deviation generated from the new points Xs1 and Xs2.
 
-	```
+post_sample : numpy array of shape (n, num_samples)
+    Samples from the posterior distribution over the model parameters. 
 
-	![plot_predicitive_2D](doc/imgs/example_2D.png)
+```
+
+![plot_predicitive_2D](doc/imgs/example_2D.png)
 
 ## Examples
 
-Python scripts for the following examples
+Python scripts for the following examples can be found in the **examples** directory:
+
+- SSGPR for 1-dimensional data: predicting on new inputs / performance evaluation / plotting results. Filename example_1D.py
+- SSGPR for 2-dimensional data: predicting on new inputs / performance evaluation / plotting results. Filename example_2D.py
+- SSGPR for high-dimensional data: predicting on new inputs / performance evaluation. Filename example_high_dim.py
 
 ## Testing
+
+Testing setup with [pytest](https://docs.pytest.org). Should you want to check version compatibility or make changes, you can check that original SSGPR functionality remains unaffected by executing `pytest -v` in the **test** directory. You should see the following:
+
+![plot_predicitive_2D](doc/imgs/pytest_output.png)

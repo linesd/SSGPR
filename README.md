@@ -102,7 +102,8 @@ best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
 ```
 Predict on new inputs with the posterior predictive.
 
-If sample_posterior is True, predict returns mu, stddev and f_post. If sample_posterior is False, predict returns mu and stddev.
+If sample_posterior is True, predict returns mu, stddev and f_post. 
+If sample_posterior is False, predict returns mu and stddev.
 
 Parameters
 ----------
@@ -110,7 +111,8 @@ Xs : numpy array of shape (N, D)
     New data inputs where N is the number of new data points and D is the dimensionality of the data.
 
 sample_posterior : bool
-    If true, predict returns num_samples samples drawn from the posterior distribution over the model parameters (weights). Default is False.
+    If true, predict returns num_samples samples drawn from the posterior distribution over the model 
+    parameters (weights). Default is False.
 
 
 num_samples : int
@@ -134,7 +136,9 @@ f_post : numpy array of shape (N, num_samples)
 `NMSE, MNLP = ssgpr.evaluate_performance(restarts=3)`
 
 ```
-Evaluates the performance of the predictive mean by calculating the normalized mean squared error (NMSE) and the mean negative log probability (MNLP) of the predictive mean against the test data.
+Evaluates the performance of the predictive mean by calculating the normalized mean 
+squared error (NMSE) and the mean negative log probability (MNLP) of the predictive 
+mean against the test data.
 
 If optimize has not previously been called, it is called in this
 function.

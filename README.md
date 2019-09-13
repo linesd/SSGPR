@@ -273,6 +273,6 @@ Python scripts for the following examples can be found in the **examples** direc
 
 ## Testing
 
-Testing setup with [pytest](https://docs.pytest.org). Should you want to check version compatibility or make changes, you can check that original SSGPR functionality remains unaffected by executing `pytest -v` in the **test** directory. You should see the following:
+Testing setup with [pytest](https://docs.pytest.org) (requires installation). Should you want to check version compatibility or make changes, you can check that original SSGPR functionality remains unaffected by executing `pytest -v` in the **test** directory. You should see the following:
 
 ![plot_predicitive_2D](doc/imgs/pytest_output.png)

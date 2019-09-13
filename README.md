@@ -95,12 +95,14 @@ best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
     linesearches performed.
 ```
 
-- Make predictions on new data with the predict method. Predict returns the predictive mean and standard deviation. Predict also has the option to return num_samples samples drawn from the posterior distribution over the model parameters.
+- Make predictions on new data with the predict method. Predict returns the predictive mean and standard deviation. Predict also has the option to return `num_samples` samples drawn from the posterior distribution over the model parameters.
 
 `mu, stddev, f_post = ssgpr.predict(Xs, sample_posterior=False, num_samples=1)`
 
 ```
 Predict on new inputs with the posterior predictive.
+
+If sample_posterior is True, predict returns mu, stddev and f_post. If sample_posterior is False, predict returns mu and stddev.
 
 Parameters
 ----------
@@ -126,6 +128,38 @@ f_post : numpy array of shape (N, num_samples)
     num_samples samples from the posterior distribution over the model parameters
     (weights). f_post is only returned if sample_posterior = True.
 ```
+
+- Evaluate the SSGPR performance. `evaluate_performance` calculates the Normalised Mean Squared Error (MNSE) and the Mean Negative Log Probability (MNLP) of the predictive mean against the test data.
+
+`NMSE, MNLP = ssgpr.evaluate_performance(restarts=3)`
+
+```
+Evaluates the performance of the predictive mean by calculating the normalized mean squared error (NMSE) and the mean negative log probability (MNLP) of the predictive mean against the test data.
+
+If optimize has not previously been called, it is called in this
+function.
+
+Test data must first be loaded with the add_data method.
+
+Parameters
+----------
+restarts : int
+    The number of restarts for the minimization process.
+    - The first minimization attempt is initialized with:
+        - lengthscales: half of the ranges of the input dimensions
+        - amplitude: variance of the targets
+        - noise variance: variance of the targets divided by four
+        - spectral points: choose the best from 100 random initializations
+    - Subsequent restarts have random initialization.
+
+Return
+------
+NMSE : numpy.float64
+    Normalized mean squared error (NMSE)
+
+MNLP : numpy.float64
+    Mean negative log probability (MNLP)
+``` 
 
 ## Examples
 ### 1-Dimensional Data

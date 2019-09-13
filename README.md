@@ -167,7 +167,7 @@ MNLP : numpy.float64
 
 - **Plotting:** plot the predictive distribution for 1-dimensional and 2-dimentional data.
 
-	- 1-dimensional 
+	- Predictive distribution for 1-dimensional input data
 
 `plot_predictive_1D(path=None, X_train=None, Y_train=None, Xs=None, mu=None, stddev=None, post_sample=None)`
 
@@ -199,6 +199,47 @@ stddev : numpy array of shape (n, 1)
 post_sample : numpy array of shape (n, num_samples)
     Samples from the posterior distribution over the model parameters.
 ```
+
+![plot_predicitive_1D](doc/imgs/example_1D.png)
+
+	- Predictive distribution for 2-dimensional input data
+
+`plot_predictive_2D(path=None, X_train=None, Y_train=None, Xs1=None, Xs2=None, mu=None, stddev=None)`
+
+```
+Plot the predictive distribution for one dimensional data.
+
+See example_2D.py for use.
+
+Parameters
+----------
+path : str
+    Path to save figure. If no path is provided then the figure is not saved.
+
+X_train : numpy array of shape (N, 1)
+    Training data.
+
+Y_train : numpy array of shape (N, 1)
+    Training targets.
+
+Xs1 : numpy array of shape (n, n)
+    New points used to predict on. Xs1 should be generated with np.meshgrid (see example_2D.py).
+
+Xs2 : numpy array of shape (n, n)
+    New points used to predict on. Xs2 should be generated with np.meshgrid (see example_2D.py).
+
+mu : numpy array of shape (n, n)
+    Predictive mean generated from new points Xs1 and Xs2.
+
+stddev : numpy array of shape (n, n)
+    Standard deviation generated from the new points Xs1 and Xs2.
+
+post_sample : numpy array of shape (n, num_samples)
+    Samples from the posterior distribution over the model parameters. 
+
+```
+
+![plot_predicitive_2D](doc/imgs/example_2D.png)
 
 ## Examples
 

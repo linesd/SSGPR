@@ -34,7 +34,7 @@ NMSE, MNLP = ssgpr.evaluate_performance()
 print("Normalised mean squared error (NMSE): ", np.round(NMSE,5))
 print("Mean negative log probability (MNLP): ", np.round(MNLP,5))
 
-path = "../imgs/example_2D.png"
+path = "../doc/imgs/example_2D.png"
 #plot results
 plot_predictive_2D(path=path, X_train=X_train, Y_train=Y_train, X1=X1, X2=X2,
                    mu=mu.reshape(X1.shape), stddev=sigma.reshape(X1.shape))

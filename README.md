@@ -165,9 +165,9 @@ MNLP : numpy.float64
     Mean negative log probability (MNLP)
 ``` 
 
-- **Plot:** plot the predictive distribution for 1-dimensional and 2-dimentional data.
+- **Plotting:** plot the predictive distribution for 1-dimensional and 2-dimentional data.
 
--- 1-dimensional 
+	- 1-dimensional 
 
 `plot_predictive_1D(path=None, X_train=None, Y_train=None, Xs=None, mu=None, stddev=None, post_sample=None)`
 

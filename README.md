@@ -11,7 +11,8 @@ Table of Contents:
 1. [Install](#install)
 2. [Examples](#examples)
 3. [General Use](#general-use)
-4. [Testing](#testing)
+4. [Optimization](#optimization)
+5. [Testing](#testing)
 
 ## Install
 
@@ -52,7 +53,7 @@ optimize_freq : bool
 
 Add data to SSGPR with the add_data method: 
 
-`ssgpr.add_data(X_train, Y_train, X_test, Y_test)`
+`ssgpr.add_data(X_train, Y_train, X_test=None, Y_test=None)`
 
 ```
 Add data to the SSGPR object.
@@ -89,10 +90,10 @@ Parameters
 restarts : int
     The number of restarts for the minimization process. Defaults to 3.
     - The first minimization attempt is initialized with:
-        - lengthscales: 	half of the ranges of the input dimensions
-        - amplitude: 		variance of the targets
-        - noise variance: 	variance of the targets divided by four
-        - spectral points: 	choose the best from 100 random initializations
+        - lengthscales: half of the ranges of the input dimensions
+        - amplitude: variance of the targets
+        - noise variance: variance of the targets divided by four
+        - spectral points: choose the best from 100 random initializations
     - Subsequent restarts have random initialization.
 
 maxiter : int
@@ -270,6 +271,10 @@ post_sample : numpy array of shape (n, num_samples)
 ```
 
 ![plot_predicitive_2D](doc/imgs/example_2D.png)
+
+## Optimization
+
+To optimize the SSGPR the negative marginal log likelihood is minimized using conjugate-gradient minimization. For more information, see [minimize](https://github.com/linesd/minimize).
 
 ## Testing
 

@@ -5,7 +5,7 @@ import numpy.linalg as LA
 
 class SSGPR:
     """
-    Sparse Spectrum Gaussian Process Regression object.
+    Sparse Spectrum Gaussian Process Regression (SSGPR) object.
 
     Parameters
 	----------
@@ -32,11 +32,11 @@ class SSGPR:
         Y_train : numpy array of shape (N, 1)
             Training data targets where N is the number of data training points.
 
-        X_test : numpy array of shape (N, D)
+        X_test : numpy array of shape (N, D) - default is None
             Test data inputs where N is the number of data test points and D is the
             dimensionality of the test data.
 
-        Y_test : numpy array of shape (N, 1)
+        Y_test : numpy array of shape (N, 1) - default is None
             Test data inputs where N is the number of data test points.
         """
         self.N, self.D  = X_train.shape

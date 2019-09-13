@@ -8,15 +8,21 @@ Notes:
 - Tested for python >= 3.6
 
 Table of Contents:
-1. [Usage](#usage)
+1. [General Use](#General Use)
 
 ## General Use
 
 - Create an instance of the SSGPR object with: 
 
-`ssgpr = SSGPR(num_basis_functions=100, optimize_freq=True)`
-
 ```
+ssgpr = SSGPR(num_basis_functions=nbf, optimize_freq=True)
+
+
+SSGPR
+-----
+
+Sparse Spectrum Gaussian Process Regression (SSGPR) object.
+
 Parameters
 ----------
 num_basis_functions : int
@@ -25,6 +31,31 @@ num_basis_functions : int
 optimize_freq : bool
     If true, the spectral points are optimized.
 ```
+- Add data to SSGPR with the add_data method:
+
+```
+ssgpr.add_data(X_train, Y_train, X_test, Y_test)
+
+Add data to the SSGPR object.
+
+Parameters
+----------
+X_train : numpy array of shape (N, D)
+    Training data inputs where N is the number of data training points and D is the
+    dimensionality of the training data.
+
+Y_train : numpy array of shape (N, 1)
+    Training data targets where N is the number of data training points.
+
+X_test : numpy array of shape (N, D) - default is None
+    Test data inputs where N is the number of data test points and D is the
+    dimensionality of the test data.
+
+Y_test : numpy array of shape (N, 1) - default is None
+    Test data inputs where N is the number of data test points.
+
+```
+
 
 ## Examples
 ### 1-Dimensional Data

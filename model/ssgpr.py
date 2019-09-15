@@ -39,6 +39,8 @@ class SSGPR:
         Y_test : numpy array of shape (N, 1) - default is None
             Test data inputs where N is the number of data test points.
         """
+        assert X_train.ndim == 2, "X_train must be 2-dimensional of shape (N, D)"
+        assert Y_train.ndim == 2, "Y_train must be 2-dimensioanl of shape (N, 1)"
         self.N, self.D  = X_train.shape
         self.X          = X_train
         self.Y_mean     = Y_train.mean()

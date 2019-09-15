@@ -40,14 +40,14 @@ class SSGPR:
             Test data inputs where N is the number of data test points.
         """
         assert X_train.ndim == 2, "X_train must be 2-dimensional of shape (N, D)"
-        assert Y_train.ndim == 2, "Y_train must be 2-dimensioanl of shape (N, 1)"
+        assert Y_train.ndim == 2, "Y_train must be 2-dimensional of shape (N, 1)"
         self.N, self.D  = X_train.shape
         self.X          = X_train
         self.Y_mean     = Y_train.mean()
         self.Y          = Y_train - self.Y_mean # subtract target mean to make zero mean targets (added back later)
         if (X_test is not None) and (Y_test is not None):
             assert X_test.ndim == 2, "X_test must be 2-dimensional of shape (N, D)"
-            assert Y_test.ndim == 2, "Y_test must be 2-dimensioanl of shape (N, 1)"
+            assert Y_test.ndim == 2, "Y_test must be 2-dimensional of shape (N, 1)"
             self.X_test     = X_test
             self.Y_test     = Y_test
         self.tbf = TBF(self.D, self.m)          # initialize the Trigonometric Basis Function object

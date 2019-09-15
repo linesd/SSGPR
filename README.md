@@ -280,4 +280,4 @@ To optimize the SSGPR the negative marginal log likelihood is minimized using co
 
 Testing setup with [pytest](https://docs.pytest.org) (requires installation). Should you want to check version compatibility or make changes, you can check that original SSGPR functionality remains unaffected by executing `pytest -v` in the **test** directory. You should see the following:
 
-![plot_predicitive_2D](doc/imgs/pytest_output.png)
+![plot_predicitive_2D](doc/test/pytest_output.png)

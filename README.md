@@ -25,9 +25,67 @@ pip install -r requirements.txt
 
 Python scripts for the following examples can be found in the **examples** directory:
 
-- SSGPR for 1-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results. Filename **example_1D.py**
-- SSGPR for 2-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results. Filename **example_2D.py**
-- SSGPR for high-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation. Filename **example_high_dim.py**
+- **example_1D.py:** SSGPR for 1-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results.
+```
+>>> python examples/example_1D.py
+
+Using restart # 2 results:
+Negative log-likelihood: 43.93175
+lengthscales:  [[1.8027322]]
+amplitude:  [5.98082643]
+noise variance:  [0.22635419]
+
+Normalised mean squared error (NMSE): 0.07254
+Mean negative log probability (MNLP): 0.92453
+
+```
+
+![plot_predicitive_1D](doc/imgs/example_1D.png)
+
+- **example_2D.py:** SSGPR for 2-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results.
+```
+>>> python examples/example_2D.py
+
+Using restart # 1 results:
+Negative log-likelihood: -43.39158
+lengthscales:  [[1.1534321 ]
+                [0.99406477]]
+amplitude:  [2.8900541]
+noise variance:  [0.03640424]
+
+Normalised mean squared error (NMSE): 0.17122
+Mean negative log probability (MNLP): -0.16423
+```
+
+![plot_predicitive_2D](doc/imgs/example_2D.png)
+
+- **example_high_dim.py:** SSGPR for high-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation. 
+
+```
+>>> python examples/example_high_dim.py
+
+Using restart # 1 results:
+Negative log-likelihood: -9900.92282
+lengthscales:  [[7.85058623e-01]
+                [9.42747774e-02]
+                [9.67450647e-04]
+                [1.51509357e-04]
+                [3.91525037e-03]
+                [3.58180409e-03]
+                [1.44923208e-02]
+                [1.47918558e-05]
+                [3.62131815e-03]
+                [2.08584495e-07]
+                [1.61051708e-07]
+                [3.07005295e-07]
+                [1.93626380e-07]
+                [2.48149244e-07]]
+amplitude:      [0.06217526]
+noise variance: [0.00549486]
+Normalised mean squared error (NMSE): 0.15426
+Mean negative log probability (MNLP): -0.79448
+
+```
 
 ## General Use
 
@@ -231,8 +289,6 @@ post_sample : numpy array of shape (n, num_samples)
     Samples from the posterior distribution over the model parameters.
 ```
 
-![plot_predicitive_1D](doc/imgs/example_1D.png)
-
 - Predictive distribution for 2-dimensional input data
 
 `plot_predictive_2D(path=None, X_train=None, Y_train=None, Xs1=None, Xs2=None, mu=None, stddev=None)`
@@ -269,8 +325,6 @@ post_sample : numpy array of shape (n, num_samples)
     Samples from the posterior distribution over the model parameters. 
 
 ```
-
-![plot_predicitive_2D](doc/imgs/example_2D.png)
 
 ## Optimization
 

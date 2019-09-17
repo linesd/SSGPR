@@ -297,8 +297,9 @@ class SSGPR:
                     nmll = nmllc
                     if verbose:
                         print("Selecting new spectral points ...")
+            if verbose:
+                print("Selected spectral points.")
 
-            # spectral_points = np.loadtxt("../data/test_data/spectral_points.csv")
             # minimize
             X0 = np.hstack((lengthscales, amplitude, noise_variance, spectral_points)).reshape(-1,1)
             Xs, convergence, _ = minimize(self.objective_function, X0, length=maxiter, verbose=verbose)
@@ -312,7 +313,7 @@ class SSGPR:
 
             # print out optimization result if the user wants
             if verbose:
-                print('restart # %i, negative log-likelihood = %.6f' %(restart+1,convergence[-1,0]))
+                print('restart # %i, negative log-likelihood = %.5f' %(restart+1,convergence[-1,0]))
 
             if restart < restarts-1: # randomize parameters for next iteration
                 self.tbf.update_amplitude(np.random.normal())
@@ -324,6 +325,7 @@ class SSGPR:
 
         if verbose:
             print("Using restart # %i results:" % (which_restart+1))
+            print("Negative log-likelihood: %.5f" % best_convergence[-1,0])
             self.print_hyperparams()
 
         return self.Xs, best_convergence

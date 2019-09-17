@@ -27,7 +27,8 @@ Python scripts for the following examples can be found in the **examples** direc
 
 - **example_1D.py:** SSGPR for 1-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results.
 ```
->>> python examples/example_1D.py
+>>> cd examples/
+>>> python example_1D.py
 
 Using restart # 2 results:
 Negative log-likelihood: 43.93175
@@ -44,7 +45,8 @@ Mean negative log probability (MNLP): 0.92453
 
 - **example_2D.py:** SSGPR for 2-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results.
 ```
->>> python examples/example_2D.py
+>>> cd examples/
+>>> python example_2D.py
 
 Using restart # 1 results:
 Negative log-likelihood: -43.39158
@@ -59,10 +61,11 @@ Mean negative log probability (MNLP): -0.16423
 
 ![plot_predicitive_2D](doc/imgs/example_2D.png)
 
-- **example_high_dim.py:** SSGPR for high-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation. 
+- **example_multi_dim.py:** SSGPR for high-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation. 
 
 ```
->>> python examples/example_high_dim.py
+>>> cd examples/
+>>> python example_multi_dim.py
 
 Using restart # 1 results:
 Negative log-likelihood: -9900.92282

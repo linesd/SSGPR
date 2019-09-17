@@ -3,10 +3,13 @@ sys.path.append("..")
 import numpy as np
 from model.ssgpr import SSGPR
 np.random.seed(1)  # set seed
-
 import urllib.request
 import os.path
 from scipy.io import loadmat
+
+##################################################
+#     Example for high dimensional data          #
+##################################################
 
 if not os.path.isfile('../data/example_data/elevators.mat'):
     print('Downloading \'elevators\' UCI dataset...')
@@ -38,5 +41,5 @@ mu, sigma = ssgpr.predict(X_test, sample_posterior=False)
 
 # evaluate the performance
 NMSE, MNLP = ssgpr.evaluate_performance()
-print("Normalised mean squared error (NMSE): ", np.round(NMSE,5))
-print("Mean negative log probability (MNLP): ", np.round(MNLP,5))
+print("Normalised mean squared error (NMSE): %.5f" % NMSE)
+print("Mean negative log probability (MNLP): %.5f" % MNLP)

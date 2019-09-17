@@ -6,6 +6,10 @@ from utils.plots import plot_predictive_1D
 from math import floor
 np.random.seed(1)  # set seed
 
+##################################################
+#           Example for 1D data                  #
+##################################################
+
 # load the data
 data = np.load("../data/example_data/data_1D.npy")
 n = floor(0.8 * data.shape[0])
@@ -24,8 +28,8 @@ ssgpr.optimize(restarts=3, verbose=True)
 Xs = np.linspace(-10,10,100).reshape(-1,1)
 mu, sigma, f_post = ssgpr.predict(Xs, sample_posterior=True, num_samples=3)
 NMSE, MNLP = ssgpr.evaluate_performance(restarts=1)
-print("Normalised mean squared error (NMSE): ", np.round(NMSE,5))
-print("Mean negative log probability (MNLP): ", np.round(MNLP,5))
+print("Normalised mean squared error (NMSE): %.5f" % NMSE)
+print("Mean negative log probability (MNLP): %.5f" % MNLP)
 
 path = "../doc/imgs/example_1D.png"
 #plot results

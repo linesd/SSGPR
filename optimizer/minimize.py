@@ -2,7 +2,7 @@ import numpy as np
 import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning) # suppress np.sqrt Runtime warnings
 
-def minimize(f, X, length, args=(), reduction=None, verbose=True):
+def minimize(f, X, length, args=(), reduction=None, verbose=True, concise=False):
 	"""
 	Minimize a differentiable multivariate function.
 
@@ -30,6 +30,10 @@ def minimize(f, X, length, args=(), reduction=None, verbose=True):
 
 	verbose : bool
 		If True - prints the progress of minimize. (default is True)
+
+	concise : bool
+		If True - returns concise convergence info, only the minimium function
+		 value (necessary when ptimizing a large number of parameters)
 
 	Return
 	------
@@ -173,7 +177,10 @@ def minimize(f, X, length, args=(), reduction=None, verbose=True):
 			x3 = 1/(1-d0)
 			ls_failed = True                                     # this line search failed
 
-	convergence =  np.hstack((np.array(fX).reshape(-1,1), np.array(Xd)[:,:,0])) # bundle test_data info
+	if concise:
+		convergence = fX[-1] # return only the minimum function value
+	else:
+		convergence =  np.hstack((np.array(fX).reshape(-1,1), np.array(Xd)[:,:,0])) # bundle convergence info
 	Xs = X # solution
 
 	return Xs, convergence, i

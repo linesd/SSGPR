@@ -265,7 +265,7 @@ class SSGPR:
         Xs : numpy array - Shape : (D + 2 + num_basis_functions, 1)
 		    The found solution.
 
-	    best_convergence : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
+	    global_opt : numpy array - Shape : (i, 1 + D + 2 + num_basis_functions)
             Convergence information from the best restart. The first column is the negative marginal log
             likelihood returned by the function being minimized. The next D + 2 + num_basis_functions
             columns are the guesses during the minimization process. i is the number of
@@ -302,18 +302,17 @@ class SSGPR:
 
             # minimize
             X0 = np.hstack((lengthscales, amplitude, noise_variance, spectral_points)).reshape(-1,1)
-            Xs, convergence, _ = minimize(self.objective_function, X0, length=maxiter, verbose=verbose)
+            Xs, convergence, _ = minimize(self.objective_function, X0, length=maxiter, verbose=verbose, concise=True)
 
             # check if the local optimum beat the current global optimum
-            if convergence[-1,0] < global_opt:
-                global_opt = convergence[-1,0] # update the global optimum
-                best_convergence = convergence # save best test_data criteria
+            if convergence < global_opt:
+                global_opt = convergence # update the global optimum
                 self.Xs = Xs                   # save best solution
                 which_restart = restart
 
             # print out optimization result if the user wants
             if verbose:
-                print('restart # %i, negative log-likelihood = %.5f' %(restart+1,convergence[-1,0]))
+                print('restart # %i, negative log-likelihood = %.5f' %(restart+1,convergence))
 
             if restart < restarts-1: # randomize parameters for next iteration
                 self.tbf.update_amplitude(np.random.normal())
@@ -325,10 +324,10 @@ class SSGPR:
 
         if verbose:
             print("Using restart # %i results:" % (which_restart+1))
-            print("Negative log-likelihood: %.5f" % best_convergence[-1,0])
+            print("Negative log-likelihood: %.5f" % global_opt)
             self.print_hyperparams()
 
-        return self.Xs, best_convergence
+        return self.Xs, global_opt
 
     def print_hyperparams(self):
         """

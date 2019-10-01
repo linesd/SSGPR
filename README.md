@@ -62,7 +62,7 @@ Mean negative log probability (MNLP): -0.16423
 ```
 
 <p align="center">
-  <img src="doc/imgs/example_2D.png" width=500>
+  <img src="doc/imgs/example_2D.png" width=800>
 </p>
 
 - **example_multi_dim.py:** SSGPR for high-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation. 

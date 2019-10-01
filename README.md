@@ -4,10 +4,10 @@
 
 This repository contains python code (training / predicting / evaluating / plotting) for [Sparse Spectrum Gaussian Process Regression](http://jmlr.csail.mit.edu/papers/v11/lazaro-gredilla10a.html). This implementation is the weight space view presented in section 3 of the [paper](http://www.jmlr.org/papers/volume11/lazaro-gredilla10a/lazaro-gredilla10a.pdf): Trigonometric Bayesian Regression. It is a Bayesian linear regression model with a fixed number of trigonometric basis functions.
 
-Notes:
+**Notes:**
 - Tested for python >= 3.5
 
-Table of Contents:
+**Table of Contents:**
 1. [Install](#install)
 2. [Examples](#examples)
 3. [General Use](#general-use)

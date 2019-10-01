@@ -41,7 +41,9 @@ Mean negative log probability (MNLP): 0.92453
 
 ```
 
-![plot_predicitive_1D](doc/imgs/example_1D.png)
+<p align="center">
+  <img src="doc/imgs/example_1D.png" width=500>
+</p>
 
 - **example_2D.py:** SSGPR for 2-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation / plotting results.
 ```
@@ -59,7 +61,9 @@ Normalised mean squared error (NMSE): 0.17122
 Mean negative log probability (MNLP): -0.16423
 ```
 
-![plot_predicitive_2D](doc/imgs/example_2D.png)
+<p align="center">
+  <img src="doc/imgs/example_2D.png" width=500>
+</p>
 
 - **example_multi_dim.py:** SSGPR for high-dimensional data: create instance / add data / optimize / predicting on new inputs / performance evaluation. 
 
@@ -337,4 +341,6 @@ To optimize the SSGPR the negative marginal log likelihood is minimized using co
 
 Testing setup with [pytest](https://docs.pytest.org) (requires installation). Should you want to check version compatibility or make changes, you can check that original SSGPR functionality remains unaffected by executing `pytest -v` in the **test** directory. You should see the following:
 
-![plot_predicitive_2D](doc/test/pytest_output.png)
+<p align="center">
+  <img src="doc/test/pytest_output.png" width=800>
+</p>
